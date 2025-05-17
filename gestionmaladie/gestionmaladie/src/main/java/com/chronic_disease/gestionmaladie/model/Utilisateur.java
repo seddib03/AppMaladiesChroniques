@@ -59,7 +59,5 @@ public class Utilisateur {
 	public void setMaladie(String maladie) {
 		this.maladie = maladie;
 	}
-    
-    
 
 }
