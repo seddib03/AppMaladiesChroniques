@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.0</version>
+		<version>3.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>chronicdisease</groupId>
-	<artifactId>healthguard-backend</artifactId>
+	<groupId>com.chronic-disease</groupId>
+	<artifactId>gestionmaladie</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>healthguard-backend</name>
+	<name>gestionmaladie</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
