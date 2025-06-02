@@ -1,0 +1,70 @@
+/* Layout principal */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background-color: #0f766e;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar-title {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-item:hover {
+  background-color: #115e59;
+}
+
+.nav-icon {
+  margin-right: 10px;
+}
+
+/* Contenu */
+.dashboard-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.dashboard-content h1 {
+  font-size: 2rem;
+  color: #0f766e;
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+.main-section {
+  padding: 30px;
+}
+

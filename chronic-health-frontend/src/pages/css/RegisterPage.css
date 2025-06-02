@@ -1,0 +1,212 @@
+/* Styles communs pour les champs du formulaire */
+.register-page form input,
+.register-page form textarea,
+.register-page form select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  border: 1.8px solid #cbd5e1; /* gris clair */
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  outline: none;
+  background-color: #fff;
+}
+
+/* Focus sur les champs */
+.register-page form input:focus,
+.register-page form textarea:focus,
+.register-page form select:focus {
+  border-color: #0f766e; /* couleur verte dominante */
+  box-shadow: 0 0 5px rgba(15, 118, 110, 0.4);
+}
+
+/* Placeholder style */
+.register-page form input::placeholder,
+.register-page form textarea::placeholder {
+  color: #94a3b8; /* gris moyen */
+  font-style: italic;
+}
+
+/* Désactivation des champs lors du chargement */
+.register-page form input:disabled,
+.register-page form textarea:disabled,
+.register-page form select:disabled {
+  background-color: #e2e8f0;
+  cursor: not-allowed;
+  color: #94a3b8;
+}
+.register-page {
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 30px 35px;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.register-title {
+  font-size: 2rem;
+  color: #0f766e;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.register-error,
+.register-loading {
+  margin-bottom: 20px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.register-error {
+  color: #d32f2f;
+  background-color: #fdecea;
+}
+
+.register-loading {
+  color: #0f766e;
+  background-color: #e6f4ea;
+}
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.register-page {
+  padding: 40px 20px;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-page h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f766e;
+  margin-bottom: 30px;
+}
+
+/* Formulaire avec grid 2 colonnes */
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colonnes égales */
+  gap: 20px 40px; /* espace vertical 20px, horizontal 40px */
+  max-width: 960px;
+  width: 100%;
+}
+
+/* Label au-dessus des inputs, full width */
+label {
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+/* Container input+label pour que label soit au-dessus */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Inputs, select, textarea */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 1.8px solid #0f766e;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #0f766e;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 6px #0d9488aa;
+  outline: none;
+  background-color: #fff;
+}
+
+/* Bouton sur toute la largeur de la grille (2 colonnes) */
+button {
+  grid-column: 1 / -1; /* occupe les 2 colonnes */
+  background-color: #0f766e;
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 24px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 480px;
+  justify-self: center; /* centre le bouton */
+}
+
+button:hover {
+  background-color: #0d9488;
+}
+
+/* Responsive - 1 colonne sur petits écrans */
+@media (max-width: 700px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+  button {
+    max-width: 100%;
+  }
+}
+
+
+
+
+/* Responsive */
+@media (max-width: 480px) {
+  .register-page {
+    margin: 30px 20px;
+    padding: 25px 20px;
+  }
+  .register-title {
+    font-size: 1.7rem;
+  }
+}

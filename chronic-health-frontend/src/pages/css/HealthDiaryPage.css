@@ -1,0 +1,136 @@
+/* Container principal avec sidebar + contenu */
+.diary-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Partie contenu */
+.diary-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+  background-color: #fff;
+}
+
+/* Main section */
+.diary-main {
+  flex-grow: 1;
+}
+
+/* Titre principal */
+.diary-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0f766e;
+  margin-bottom: 25px;
+}
+
+/* Form section */
+.form-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #e0f2f1;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgb(15 118 110 / 0.1);
+}
+
+/* Symptom list container */
+.symptom-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+/* Carte symptôme */
+.symptom-card {
+  background: white;
+  border-radius: 12px;
+  padding: 18px 22px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.05);
+  transition: transform 0.2s ease;
+  cursor: default;
+}
+
+.symptom-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+}
+
+.symptom-type {
+  color: #0f766e;
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Messages chargement et vide */
+.loading-text,
+.empty-text {
+  font-style: italic;
+  color: #64748b;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 40px;
+}/* Conteneur général du formulaire */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Appliquer une largeur fixe identique à tous les champs */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+  width: 400px; /* largeur fixe */
+  max-width: 400px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 1.8px solid #0f766e;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  color: #0f766e;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical; /* textarea */
+}
+
+/* Focus */
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 6px #0d9488aa;
+  outline: none;
+  background-color: #fff;
+}
+
+/* Bouton */
+button {
+  background-color: #0f766e;
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 24px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 400px; /* même largeur que les inputs */
+  max-width: 400px;
+  transition: background-color 0.3s ease;
+  margin-top: 8px;
+}
+
+button:hover {
+  background-color: #0d9488;
+}
+

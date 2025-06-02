@@ -1,0 +1,141 @@
+/* Styles uniformes pour tous les champs de formulaire */
+.medication-form-container input[type="text"],
+.medication-form-container input[type="number"],
+.medication-form-container input[type="email"],
+.medication-form-container select,
+.medication-form-container textarea {
+  width: 100%;             /* Pleine largeur dans le container */
+  max-width: 100%;
+  padding: 12px 15px;      /* Espacement intérieur */
+  margin-top: 8px;
+  margin-bottom: 20px;     /* Espacement entre champs */
+  font-size: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 1.8px solid #ccc; /* Bords sobres */
+  border-radius: 8px;      /* Bords arrondis */
+  box-sizing: border-box;  /* Pour que padding n'augmente pas la largeur */
+  transition: border-color 0.3s ease;
+  background-color: #fff;
+  outline: none;
+}
+.medication-form-container button {
+  background-color: #0f766e; /* couleur principale */
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(15, 118, 110, 0.3);
+  margin-top: 10px;
+  width: 100%; /* bouton prend toute la largeur du container */
+  max-width: 300px; /* limite largeur max */
+  display: block;
+}
+
+.medication-form-container button:hover {
+  background-color: #115e59; /* couleur plus foncée au survol */
+  box-shadow: 0 6px 10px rgba(17, 94, 89, 0.6);
+}
+
+.medication-form-container button:active {
+  background-color: #0c5e56;
+  box-shadow: 0 2px 4px rgba(12, 94, 86, 0.8);
+  transform: translateY(1px);
+}
+
+
+/* Focus : changement de bordure pour indiquer l’état actif */
+.medication-form-container input[type="text"]:focus,
+.medication-form-container input[type="number"]:focus,
+.medication-form-container input[type="email"]:focus,
+.medication-form-container select:focus,
+.medication-form-container textarea:focus {
+  border-color: #0f766e; /* Couleur accent */
+  box-shadow: 0 0 6px rgba(15, 118, 110, 0.4);
+}
+
+/* Label au-dessus des inputs */
+.medication-form-container label {
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+/* Optionnel : textareas avec hauteur minimum */
+.medication-form-container textarea {
+  min-height: 100px;
+  resize: vertical; /* L’utilisateur peut ajuster verticalement */
+}
+
+
+.medication-page {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8; /* fond cohérent */
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.medication-title {
+  font-size: 2.25rem;
+  color: #0f766e;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Messages d’erreur et succès */
+.medication-error {
+  background-color: #fdecea;
+  color: #d32f2f;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.medication-success {
+  background-color: #e6f4ea;
+  color: #2e7d32;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Container du formulaire */
+.medication-form-container {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+  margin-bottom: 40px;
+}
+
+/* Container liste médicaments */
+.medication-list-container {
+  background-color: white;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .medication-page {
+    margin: 20px 15px;
+    padding: 15px;
+  }
+  .medication-form-container, .medication-list-container {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,74 @@
+/* Fond et layout */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f6f8; /* même que dashboard */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+/* Card login */
+.login-card {
+  background-color: white;
+  padding: 40px 50px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Titre */
+.login-title {
+  color: #0f766e; /* couleur principale dashboard */
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+/* Message d'erreur */
+.login-error {
+  color: #e63946;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Inputs et boutons dans LoginForm - adapter si possible */
+
+/* Exemple si tu veux styler inputs et bouton ici */
+.login-card input[type="text"],
+.login-card input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.login-card input[type="text"]:focus,
+.login-card input[type="password"]:focus {
+  border-color: #0f766e;
+  outline: none;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #0f766e;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-card button:hover {
+  background-color: #115e59;
+}
