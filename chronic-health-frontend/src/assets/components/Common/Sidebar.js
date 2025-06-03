@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { FaTachometerAlt, FaPills, FaCalendarCheck } from 'react-icons/fa';
 import { FaCalendarAlt, FaLightbulb } from 'react-icons/fa';
+import { FaHome, FaUser, FaCog, FaRobot } from 'react-icons/fa';
 
 import './Sidebar.css';
 
@@ -23,6 +24,9 @@ const Sidebar = () => {
         </NavLink>
         <NavLink to="/recommendations" className="nav-item">
             <FaLightbulb className="nav-icon" /> Recommandations
+        </NavLink>
+        <NavLink to="/ai-medical-advice" className="nav-item">
+          <FaRobot className="nav-icon" /> Assistant IA
         </NavLink>
 
       </nav>

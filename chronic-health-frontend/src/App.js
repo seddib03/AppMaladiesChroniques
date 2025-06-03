@@ -7,6 +7,7 @@ import HealthDiaryPage from './pages/HealthDiaryPage';
 import AppointmentPage from './pages/AppointmentPage';
 import NotificationPage from './pages/NotificationPage';
 import RecommendationsPage from './pages/RecommendationsPage';
+import MedicalAdvice from './pages/MedicalAdvice';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/appointments" element={<AppointmentPage />} />
         <Route path="/notifications" element={<NotificationPage />} />
         <Route path="/recommendations" element={<RecommendationsPage />} />
+        <Route path="/ai-medical-advice" element={<MedicalAdvice />} />
 
         {/* Redirection racine vers le dashboard */}
         <Route path="/" element={<Navigate to="/dashboard" />} />
