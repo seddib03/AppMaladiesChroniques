@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api', // Replace with your backend URL
-  headers: { 'Content-Type': 'application/json' },
+  baseURL: 'http://localhost:8080/api', // adapte si besoin
 });
 
+// Ajouter automatiquement le token à chaque requête
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {

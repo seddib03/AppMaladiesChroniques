@@ -2,8 +2,10 @@ package chronicdisease.healthguard_backend.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -11,81 +13,81 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class HealthDiary {
-  @Id @GeneratedValue
-  private Long id;
 
-  private LocalDate date;
-  private String symptoms;
-  private String notes;
-  private String mood;
-  private String activity;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @ManyToOne
-  private User user;
+    private LocalDate date;
 
-public Long getId() {
-	return id;
-}
+    private int painLevel;       // 0 à 10
+    private int fatigueLevel;    // 0 à 10
+    private int asthmaCrisis;    // Nombre de crises (si asthme)
 
-public void setId(Long id) {
-	this.id = id;
-}
+    @Column(length = 1000)
+    private String symptomsDescription;
 
-public LocalDate getDate() {
-	return date;
-}
+    @ManyToOne
+    private User user;
 
-public void setDate(LocalDate date) {
-	this.date = date;
-}
+	public Long getId() {
+		return id;
+	}
 
-public String getSymptoms() {
-	return symptoms;
-}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-public void setSymptoms(String symptoms) {
-	this.symptoms = symptoms;
-}
+	public LocalDate getDate() {
+		return date;
+	}
 
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 
+	public int getPainLevel() {
+		return painLevel;
+	}
 
+	public void setPainLevel(int painLevel) {
+		this.painLevel = painLevel;
+	}
 
-public String getMood() {
-	return mood;
-}
+	public int getFatigueLevel() {
+		return fatigueLevel;
+	}
 
-public void setMood(String mood) {
-	this.mood = mood;
-}
+	public void setFatigueLevel(int fatigueLevel) {
+		this.fatigueLevel = fatigueLevel;
+	}
 
-public String getActivity() {
-	return activity;
-}
+	public int getAsthmaCrisis() {
+		return asthmaCrisis;
+	}
 
-public void setActivity(String activity) {
-	this.activity = activity;
-}
+	public void setAsthmaCrisis(int asthmaCrisis) {
+		this.asthmaCrisis = asthmaCrisis;
+	}
 
-public String getNotes() {
-	return notes;
-}
+	public String getSymptomsDescription() {
+		return symptomsDescription;
+	}
 
-public void setNotes(String notes) {
-	this.notes = notes;
-}
+	public void setSymptomsDescription(String symptomsDescription) {
+		this.symptomsDescription = symptomsDescription;
+	}
 
-public User getUser() {
-	return user;
-}
+	public User getUser() {
+		return user;
+	}
 
-public void setUser(User user) {
-	this.user = user;
-}
-  
-  
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+    // getters and setters
+    
 }
 

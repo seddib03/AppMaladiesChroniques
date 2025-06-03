@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Button from '../Button';
 
 const LoginForm = ({ onLogin }) => {
@@ -12,14 +13,16 @@ const LoginForm = ({ onLogin }) => {
     try {
       await onLogin({ username, password });
     } catch (err) {
-      setError('Invalid credentials');
+      setError('Identifiants incorrects');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow-md">
+      <h2 className="text-xl font-semibold text-center">Connexion</h2>
+
       <div>
-        <label className="block text-gray-700">Username</label>
+        <label className="block text-gray-700">Nom d'utilisateur</label>
         <input
           type="text"
           value={username}
@@ -28,8 +31,9 @@ const LoginForm = ({ onLogin }) => {
           required
         />
       </div>
+
       <div>
-        <label className="block text-gray-700">Password</label>
+        <label className="block text-gray-700">Mot de passe</label>
         <input
           type="password"
           value={password}
@@ -38,8 +42,17 @@ const LoginForm = ({ onLogin }) => {
           required
         />
       </div>
+
       {error && <p className="text-red-500">{error}</p>}
-      <Button type="submit">Login</Button>
+
+      <Button type="submit">Se connecter</Button>
+
+      <p className="text-sm mt-4 text-center">
+        Vous n’avez pas de compte ?{' '}
+        <Link to="/register" className="text-blue-500 hover:underline">
+          Inscrivez-vous ici
+        </Link>
+      </p>
     </form>
   );
 };

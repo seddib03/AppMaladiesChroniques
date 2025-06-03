@@ -4,20 +4,26 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor
 public class Notification {
-    @Id @GeneratedValue
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String message;
-    private boolean read;
-    private LocalDateTime timestamp;
+
+    private String type; // "medication", "symptom_alert", "appointment", "tip"
+
+    private LocalDateTime date;
+
+    private Boolean read = false;
 
     @ManyToOne
     private User user;
@@ -38,20 +44,28 @@ public class Notification {
 		this.message = message;
 	}
 
-	public boolean isRead() {
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+
+	public Boolean getRead() {
 		return read;
 	}
 
-	public void setRead(boolean read) {
+	public void setRead(Boolean read) {
 		this.read = read;
-	}
-
-	public LocalDateTime getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(LocalDateTime timestamp) {
-		this.timestamp = timestamp;
 	}
 
 	public User getUser() {
@@ -61,7 +75,7 @@ public class Notification {
 	public void setUser(User user) {
 		this.user = user;
 	}
-    
+
+    // getters and setters
     
 }
-

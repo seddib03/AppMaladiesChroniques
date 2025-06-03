@@ -3,54 +3,75 @@ import PropTypes from 'prop-types';
 import Button from '../Button';
 
 const MedicationForm = ({ onAdd }) => {
-  const [newMed, setNewMed] = useState({ name: '', dosage: '', frequency: '' });
+  const [newMed, setNewMed] = useState({
+    name: '',
+    dosage: '',
+    frequency: '',
+    startDate: '',
+    endDate: '',
+    taken: false,
+    needsRenewal: false,
+    time: '',  // ajout du champ time
+  });
 
   const handleChange = (e) => {
-    setNewMed({ ...newMed, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setNewMed({
+      ...newMed,
+      [name]: type === 'checkbox' ? checked : value,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await onAdd(newMed);
-    setNewMed({ name: '', dosage: '', frequency: '' });
+    setNewMed({
+      name: '',
+      dosage: '',
+      frequency: '',
+      startDate: '',
+      endDate: '',
+      taken: false,
+      needsRenewal: false,
+      time: '',  // reset aussi time
+    });
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 bg-white p-4 rounded shadow">
       <div>
-        <label className="block text-gray-700">Medication Name</label>
-        <input
-          type="text"
-          name="name"
-          value={newMed.name}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
+        <label>Nom du Médicament</label>
+        <input type="text" name="name" value={newMed.name} onChange={handleChange} required className="w-full p-2 border rounded" />
       </div>
       <div>
-        <label className="block text-gray-700">Dosage</label>
-        <input
-          type="text"
-          name="dosage"
-          value={newMed.dosage}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
+        <label>Dosage</label>
+        <input type="text" name="dosage" value={newMed.dosage} onChange={handleChange} required className="w-full p-2 border rounded" />
       </div>
       <div>
-        <label className="block text-gray-700">Frequency</label>
-        <input
-          type="text"
-          name="frequency"
-          value={newMed.frequency}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
+        <label>Fréquence</label>
+        <input type="text" name="frequency" value={newMed.frequency} onChange={handleChange} required className="w-full p-2 border rounded" />
       </div>
-      <Button type="submit">Add Medication</Button>
+      <div>
+        <label>Date de Début</label>
+        <input type="date" name="startDate" value={newMed.startDate} onChange={handleChange} className="w-full p-2 border rounded" />
+      </div>
+      <div>
+        <label>Date de Fin</label>
+        <input type="date" name="endDate" value={newMed.endDate} onChange={handleChange} className="w-full p-2 border rounded" />
+      </div>
+      <div>
+        <label>Heure de prise</label>
+        <input type="time" name="time" value={newMed.time} onChange={handleChange} className="w-full p-2 border rounded" />
+      </div>
+      <div className="flex items-center gap-2">
+        <label>Pris</label>
+        <input type="checkbox" name="taken" checked={newMed.taken} onChange={handleChange} />
+      </div>
+      <div className="flex items-center gap-2">
+        <label>Renouvellement nécessaire</label>
+        <input type="checkbox" name="needsRenewal" checked={newMed.needsRenewal} onChange={handleChange} />
+      </div>
+      <Button type="submit">Ajouter Médicament</Button>
     </form>
   );
 };
