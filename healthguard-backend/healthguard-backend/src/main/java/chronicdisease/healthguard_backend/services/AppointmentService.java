@@ -1,5 +1,6 @@
 package chronicdisease.healthguard_backend.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,5 +39,15 @@ public class AppointmentService {
 
     public void deleteAppointment(Long id) {
         appointmentRepository.deleteById(id);
+    }
+
+    public List<Appointment> findAppointmentsDueSoon() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime tomorrow = now.plusDays(1);
+        
+        return appointmentRepository.findByDateBetween(
+            now.withHour(0).withMinute(0),
+            tomorrow.withHour(23).withMinute(59)
+        );
     }
 }

@@ -13,9 +13,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class NotificationScheduler {
-    private final MedicationService medicationService;
-    private final AppointmentService appointmentService;
-    private final NotificationService notificationService;
+    private final MedicationService medicationService = new MedicationService();
+    private final AppointmentService appointmentService = new AppointmentService();
+    private final NotificationService notificationService = new NotificationService();
 
     @Scheduled(cron = "0 * * * * *") // Toutes les minutes (ajustez selon les besoins)
     public void checkMedicationTimes() {
@@ -34,9 +34,9 @@ public class NotificationScheduler {
         List<Appointment> upcomingApps = appointmentService.findAppointmentsDueSoon();
         upcomingApps.forEach(app -> {
             Notification notif = new Notification();
-            notif.setMessage("Rappel: Vous avez un rendez-vous demain à " + app.getTime());
+            notif.setMessage("Rappel: Vous avez un rendez-vous demain à " + app.getDate());
             notif.setType("appointment_reminder");
-            notif.setUser(app.getPatient());
+            notif.setUser(app.getUser());
             notificationService.createNotification(notif);
         });
     }
