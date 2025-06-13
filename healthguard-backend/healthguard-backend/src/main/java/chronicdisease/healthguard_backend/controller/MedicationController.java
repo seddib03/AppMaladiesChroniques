@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import chronicdisease.healthguard_backend.model.Medication;
 import chronicdisease.healthguard_backend.services.MedicationService;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/medications")
 public class MedicationController {

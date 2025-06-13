@@ -16,6 +16,9 @@ public class MedicationService {
     private MedicationRepository medicationRepository;
 
     public Medication createMedication(Medication medication) {
+    	if (medication.getUser() == null || medication.getUser().getId() == null) {
+            throw new IllegalArgumentException("L'utilisateur doit être spécifié.");
+        }
         return medicationRepository.save(medication);
     }
 

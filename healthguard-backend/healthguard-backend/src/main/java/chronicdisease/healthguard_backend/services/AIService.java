@@ -13,6 +13,8 @@ public class AIService {
     }
 
     public String getMedicalAdvice(String userInput) {
-        return chatClient.call(userInput);
-    }
+    	if (userInput == null || userInput.trim().isEmpty()) {
+            return "Veuillez fournir une description de vos symptômes";
+        }
+        return chatClient.call(userInput);    }
 }

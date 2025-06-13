@@ -42,6 +42,7 @@ public class User {
     private List<HealthDiary> healthDiaries;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Medication> medications;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

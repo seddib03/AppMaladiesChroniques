@@ -4,13 +4,17 @@ import MedicationList from '../assets/components/Common/Dashboard/MedicationList
 import healthService from '../services/healthService';
 import './css/MedicationPage.css';
 
+
 const MedicationPage = () => {
   const [medications, setMedications] = useState([]);
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
-  const userId = 1; // Remplace ça par l’ID réel de l’utilisateur connecté
+  const [refreshKey, setRefreshKey] = useState(0); // Pour forcer la mise à jour
+  const userId = 1;
 
-  useEffect(() => {
+  
+useEffect(() => {
+  if (userId) {
     const fetchMedications = async () => {
       try {
         const data = await healthService.getMedications(userId);
@@ -20,20 +24,22 @@ const MedicationPage = () => {
       }
     };
     fetchMedications();
-  }, []);
+  }
+}, [userId, refreshKey]);
 
   const handleAdd = async (medication) => {
     try {
       const completeMedication = {
         ...medication,
-        user: { id: userId }, // important pour le backend
+        user: { id: userId },
       };
-      const newMed = await healthService.addMedication(completeMedication);
-      setMedications((prev) => [...prev, newMed]);
+      await healthService.addMedication(completeMedication);
+      setRefreshKey((prev) => prev + 1); // Forcer la re-récupération
       setSuccessMsg('Médicament ajouté avec succès !');
       setError('');
       setTimeout(() => setSuccessMsg(''), 3000);
     } catch (err) {
+      console.error('Erreur lors de l’ajout:', err);
       setError('Impossible d’ajouter le médicament.');
       setSuccessMsg('');
     }

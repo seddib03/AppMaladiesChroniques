@@ -9,16 +9,9 @@ const AppointmentPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [userId, setUserId] = useState(null);
+  const [userId] = useState(1); // À remplacer par votre logique d'authentification
 
   useEffect(() => {
-    const storedUserId = 1; // À remplacer par votre logique d'authentification
-    setUserId(storedUserId);
-  }, []);
-
-  useEffect(() => {
-    if (!userId) return;
-
     const fetchAppointments = async () => {
       setLoading(true);
       try {
@@ -43,7 +36,6 @@ const AppointmentPage = () => {
       setError('');
       setSuccess('Rendez-vous ajouté avec succès !');
       
-      // Effacer le message après 5 secondes
       setTimeout(() => {
         setSuccess('');
       }, 5000);
@@ -72,14 +64,15 @@ const AppointmentPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <h2 className="text-xl font-semibold mb-4">Nouveau Rendez-vous</h2>
-          <AppointmentForm onAdd={handleAdd} successMessage={success} />
+          <AppointmentForm onAdd={handleAdd} />
         </div>
         
         <div>
+          <h2 className="text-xl font-semibold mb-4">Mes Rendez-vous</h2>
           {loading ? (
             <p className="appointment-loading text-gray-500">Chargement en cours...</p>
           ) : (
-            <AppointmentList userId={userId} />
+            <AppointmentList appointments={appointments} />
           )}
         </div>
       </div>

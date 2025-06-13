@@ -41,10 +41,16 @@ getSymptoms: async (userId) => {
     }
   },
 
-  getMedications: async () => {
-    const response = await api.get('/medications');
-    return response.data;
-  },
+ getMedications: async (userId) => {
+  try {
+    const response = await api.get(`/medications/user/${userId}`);
+    console.log('Réponse de getMedications pour userId', userId, ':', response.data);
+    return Array.isArray(response.data) ? response.data : [];
+  } catch (error) {
+    console.error('Erreur lors de la récupération des médicaments:', error);
+    throw error;
+  }
+},
 
   addMedication: async (medication) => {
     const response = await api.post('/medications', medication);
