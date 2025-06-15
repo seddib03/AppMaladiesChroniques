@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api', // adapte si besoin
+  baseURL: 'http://localhost:8083/api', // adapte si besoin
 });
 
 // Ajouter automatiquement le token à chaque requête

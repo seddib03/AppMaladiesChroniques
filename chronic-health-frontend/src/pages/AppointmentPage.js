@@ -14,12 +14,22 @@ const AppointmentPage = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       setLoading(true);
+      setError('');
       try {
         const data = await healthService.getAppointments(userId);
-        setAppointments(data);
-        setError('');
+        
+        // Vérification et formatage des données
+        const formattedAppointments = Array.isArray(data)
+          ? data.map(app => ({
+              ...app,
+              date: app.date ? new Date(app.date) : null
+            }))
+          : [];
+        
+        setAppointments(formattedAppointments);
       } catch (err) {
-        setError('Erreur lors du chargement des rendez-vous.');
+        console.error('Fetch error:', err);
+        setError(err.response?.data?.message || 'Erreur lors du chargement des rendez-vous');
         setAppointments([]);
       } finally {
         setLoading(false);
@@ -30,49 +40,78 @@ const AppointmentPage = () => {
   }, [userId]);
 
   const handleAdd = async (appointment) => {
+    setError('');
+    setSuccess('');
     try {
       const newAppointment = await healthService.addAppointment(userId, appointment);
-      setAppointments(prev => [...prev, newAppointment]);
-      setError('');
-      setSuccess('Rendez-vous ajouté avec succès !');
       
-      setTimeout(() => {
-        setSuccess('');
-      }, 5000);
+      // Validation de la réponse
+      if (!newAppointment?.id) {
+        throw new Error('Réponse du serveur invalide');
+      }
+
+      setAppointments(prev => [
+        ...prev,
+        {
+          ...newAppointment,
+          date: newAppointment.date ? new Date(newAppointment.date) : null
+        }
+      ]);
+      
+      setSuccess('Rendez-vous ajouté avec succès !');
+      setTimeout(() => setSuccess(''), 5000);
     } catch (err) {
-      setError(err.message || "Erreur lors de l'ajout du rendez-vous.");
-      setSuccess('');
+      console.error('Add error:', err);
+      setError(err.response?.data?.message || err.message || "Erreur lors de l'ajout du rendez-vous");
     }
   };
 
   return (
     <div className="appointment-page container mx-auto p-4">
-      <h1 className="appointment-title text-2xl font-bold mb-6">Gestion des Rendez-vous</h1>
+      <h1 className="text-2xl font-bold mb-6">Gestion des Rendez-vous</h1>
       
+      {/* Messages d'état */}
       {error && (
-        <div className="appointment-error bg-red-100 text-red-700 p-3 rounded mb-4">
-          {error}
+        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
+          <p>{error}</p>
         </div>
       )}
       
       {success && (
-        <div className="appointment-success bg-green-100 text-green-700 p-3 rounded mb-4">
-          {success}
+        <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4">
+          <p>{success}</p>
         </div>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
+        {/* Formulaire */}
+        <div className="bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-xl font-semibold mb-4">Nouveau Rendez-vous</h2>
-          <AppointmentForm onAdd={handleAdd} />
+          <AppointmentForm 
+            onAdd={handleAdd} 
+            disabled={loading}
+          />
         </div>
         
-        <div>
-          <h2 className="text-xl font-semibold mb-4">Mes Rendez-vous</h2>
-          {loading ? (
-            <p className="appointment-loading text-gray-500">Chargement en cours...</p>
+        {/* Liste */}
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-semibold">Mes Rendez-vous</h2>
+            {loading && (
+              <span className="text-sm text-gray-500">Chargement...</span>
+            )}
+          </div>
+          
+          {!loading && appointments.length === 0 ? (
+            <div className="text-center py-8 text-gray-500">
+              <p>Aucun rendez-vous programmé</p>
+              <p className="text-sm mt-2">Utilisez le formulaire pour ajouter un rendez-vous</p>
+            </div>
           ) : (
-            <AppointmentList appointments={appointments} />
+            <AppointmentList 
+              appointments={appointments} 
+              loading={loading}
+            />
           )}
         </div>
       </div>

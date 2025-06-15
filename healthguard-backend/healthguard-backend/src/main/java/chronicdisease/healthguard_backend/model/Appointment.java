@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +29,9 @@ public class Appointment {
     private String reason;
 
     @ManyToOne
-    private User user;
+	@JsonIgnoreProperties("appointments") // Ajoutez cette annotation
+
+	private User user;
 
 	public Long getId() {
 		return id;

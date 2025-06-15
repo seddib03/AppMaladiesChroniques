@@ -4,8 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import chronicdisease.healthguard_backend.model.Medication;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public interface MedicationRepository extends JpaRepository<Medication, Long> {
     List<Medication> findByUserId(Long userId);
+    List<Medication> findByTimeBetween(LocalTime startTime, LocalTime endTime);
+
 }

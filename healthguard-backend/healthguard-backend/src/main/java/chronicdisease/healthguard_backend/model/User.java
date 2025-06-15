@@ -2,6 +2,7 @@ package chronicdisease.healthguard_backend.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -42,7 +43,8 @@ public class User {
     private List<HealthDiary> healthDiaries;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonManagedReference
+	@JsonIgnoreProperties("user")
+//    @JsonManagedReference
     private List<Medication> medications;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

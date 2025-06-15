@@ -5,19 +5,10 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.couchbase.CouchbaseProperties.Authentication;
+import org.springframework.security.core.Authentication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 import chronicdisease.healthguard_backend.model.Notification;
@@ -65,5 +56,24 @@ public class NotificationController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         notificationService.deleteNotification(id);
         return ResponseEntity.noContent().build();
+    }
+    // NotificationController.java
+    @GetMapping("/user/{userId}/unread-count")
+    public ResponseEntity<Long> getUnreadCount(@PathVariable Long userId) {
+        return ResponseEntity.ok(notificationService.countUnreadByUser(userId));
+    }
+
+    @GetMapping("/unread")
+    public ResponseEntity<List<Notification>> getUnreadNotifications(
+            @AuthenticationPrincipal UserDetails userDetails,
+            @RequestParam(required = false) Long userId) { // Ajoutez ce paramètre optionnel
+
+        // Utilisez le userId du paramètre ou celui du token
+        Long finalUserId = userId != null ? userId : ((User) userDetails).getId();
+
+        System.out.println("Fetching notifications for user: " + finalUserId);
+        List<Notification> notifications = notificationService.getUnreadNotifications(finalUserId);
+
+        return ResponseEntity.ok(notifications);
     }
 }

@@ -1,5 +1,6 @@
 package chronicdisease.healthguard_backend.services;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,14 @@ public class AppointmentService {
         return appointmentRepository.findByDateBetween(
             now.withHour(0).withMinute(0),
             tomorrow.withHour(23).withMinute(59)
+        );
+    }
+
+    public List<Appointment> findAppointmentsToday() {
+        LocalDate today = LocalDate.now();
+        return appointmentRepository.findByDateBetween(
+                today.atStartOfDay(),
+                today.atTime(23, 59, 59)
         );
     }
 }

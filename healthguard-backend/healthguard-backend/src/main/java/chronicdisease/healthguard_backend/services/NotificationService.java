@@ -1,5 +1,6 @@
 package chronicdisease.healthguard_backend.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,4 +38,18 @@ public class NotificationService {
     public void deleteNotification(Long id) {
         notificationRepository.deleteById(id);
     }
+
+    // NotificationService.java
+    public long countUnreadByUser(Long userId) {
+        return notificationRepository.countByUserIdAndReadFalse(userId);
+    }
+
+    public List<Notification> findByUserIdAndTypeAndDateAfter(Long userId, String type, LocalDateTime date) {
+        return notificationRepository.findByUserIdAndTypeAndDateAfter(userId, type, date);
+    }
+    public List<Notification> getUnreadNotifications(Long userId) {
+        return notificationRepository.findByUserIdAndReadFalse(userId); // <-- Ici
+    }
+
+
 }

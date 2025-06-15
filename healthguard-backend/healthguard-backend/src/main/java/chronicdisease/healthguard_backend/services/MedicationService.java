@@ -1,5 +1,6 @@
 package chronicdisease.healthguard_backend.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,4 +50,14 @@ public class MedicationService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    public List<Medication> findMedicationsToTakeSoon() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime nextHour = now.plusHours(1);
+
+        return medicationRepository.findByTimeBetween(
+                now.toLocalTime(),
+                nextHour.toLocalTime()
+        );
+    }
 }
