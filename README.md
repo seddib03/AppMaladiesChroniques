@@ -110,28 +110,10 @@ cd frontend && npm test
 
 ## 👥 Contributeurs
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/seddib03">
-        <img src="https://github.com/seddib03.png" width="100px;" alt="Salma"/><br />
-        <sub><b>EDDIB Salma</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/username2">
-        <img src="https://github.com/username2.png" width="100px;" alt="Amal"/><br />
-        <sub><b>EL BAHARI Amal</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/username3">
-        <img src="https://github.com/username3.png" width="100px;" alt="Safaa"/><br />
-        <sub><b>LAKTAM Safaa</b></sub>
-      </a>
-    </td>
-  </tr>
-</table>
+EDDIB Salma
+EL BAHARI Amal
+LAKTAM Safaa
+     
 
 **Encadrement:** Mme ELBAJTA Manal  
 **Institution:** [INSEA](https://www.insea.ac.ma/) - Institut National de Statistique et d'Économie Appliquée
